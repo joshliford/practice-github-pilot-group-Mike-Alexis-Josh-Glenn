@@ -1,6 +1,6 @@
 # Class Manager Application
 
-A simple REST API application for managing teachers and students in a MySQL database, built with Spring Boot.
+A complete application for managing teachers and students with a Spring Boot REST API backend and a retro Nintendo Game Boy styled React frontend built with Vite.
 
 ## Project Structure
 
@@ -29,16 +29,20 @@ src/
 - Java 21 or higher
 - Maven 3.6+
 - MySQL 8.0+
+- Node.js 16+ (for frontend)
+- npm (for frontend dependencies)
 
 ## Setup Instructions
 
-### 1. Create MySQL Database
+### Backend
+
+#### 1. Create MySQL Database
 
 ```sql
 CREATE DATABASE class_manager;
 ```
 
-### 2. Update Database Connection (Optional)
+#### 2. Update Database Connection (Optional)
 
 Edit `src/main/resources/application.properties` if your MySQL credentials differ:
 
@@ -46,18 +50,41 @@ Edit `src/main/resources/application.properties` if your MySQL credentials diffe
 spring.datasource.url=jdbc:mysql://localhost:3306/class_manager?useSSL=false&serverTimezone=UTC
 spring.datasource.username=root
 spring.datasource.password=root
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 ```
 
-### 3. Build the Project
+#### 3. Build the Project
 
 ```bash
 mvn clean install
 ```
 
-### 4. Run the Application
+#### 4. Run the Application
 
 ```bash
 mvn spring-boot:run
+```
+
+The backend API will start on `http://localhost:8080`
+
+### Frontend
+
+#### 1. Install Dependencies
+
+```bash
+cd frontend
+npm install
+```
+
+#### 2. Start Development Server
+
+```bash
+npm run dev
+```
+
+The frontend will start on `http://localhost:5173`
+
+See `frontend/STARTUP.md` for more details.
 ```
 
 The application will start on `http://localhost:8080`
@@ -165,13 +192,38 @@ curl -X DELETE http://localhost:8080/teachers/1
 | grade | VARCHAR(255) | |
 | enrollment_status | VARCHAR(255) | |
 
+## Frontend Features
+
+The React frontend includes:
+
+- **Nintendo Game Boy Theme**: Authentic retro 1990s green monochrome styling
+- **Teachers Management**: Create, read, update, and delete teachers with a user-friendly interface
+- **Students Management**: Full CRUD operations for students
+- **Dual View Modes**: 
+  - Card View: Display records as interactive cards
+  - Table View: Display records in a traditional table format
+- **Form Handling**: Easy-to-use forms for creating and editing records
+- **Responsive Design**: Works seamlessly on desktop and mobile devices
+- **Real-time Feedback**: Success and error messages for all operations
+- **Tab Navigation**: Easy switching between Teachers and Students sections
+
 ## Technology Stack
+
+### Backend
 
 - **Spring Boot 4.0.2** - Web framework
 - **Spring Data JPA** - Data persistence
 - **MySQL 8.0+** - Database
 - **Java 21** - Programming language
 - **Maven** - Build tool
+
+### Frontend
+
+- **React 18.2** - UI library
+- **Vite 5.0** - Build tool and dev server
+- **JavaScript** - Programming language
+- **Axios** - HTTP client
+- **CSS3** - Styling with Game Boy theme
 
 ## Notes
 
